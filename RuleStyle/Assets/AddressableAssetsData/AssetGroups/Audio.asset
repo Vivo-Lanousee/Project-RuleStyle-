@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Audio
+  m_EditorClassIdentifier: 
+  m_GroupName: Audio
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f2e94a2aba45d0040bb19816df7f3f4a
+  m_SerializeEntries:
+  - m_GUID: a9b8c379a4855e14e8915e79fd5c7a3f
+    m_Address: firstBGM
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb23cd59b0255654f9e53e08ecfafef8
+    m_Address: "Test_BGM_\u30DD\u30F3\u30B3\u30C4\u3060\u3063\u3066\u3044\u3044\u3058\u3083\u306A\u3044\uFF01"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd9b504328c59494a8f564baf19fb470
+    m_Address: firstSE
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fed13a19ff5e181449885f402580e1e6
+    m_Address: nextSE
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 2b80c95bdf8001f478f16e0009e349a7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: fe1ebd4274bb5ed4981494d32c28e6f3, type: 2}
+    - {fileID: 11400000, guid: 1a017737359841a4fb93c6eb87650a4b, type: 2}
