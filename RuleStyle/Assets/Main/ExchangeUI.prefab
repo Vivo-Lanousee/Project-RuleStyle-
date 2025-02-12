@@ -2044,8 +2044,6 @@ GameObject:
   - component: {fileID: 1224508071219465557}
   - component: {fileID: 6116528124509785208}
   - component: {fileID: 5374879457908268097}
-  - component: {fileID: 8764395671475274861}
-  - component: {fileID: 2082050435287855775}
   m_Layer: 5
   m_Name: ExchangeUI
   m_TagString: Untagged
@@ -2143,40 +2141,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8764395671475274861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2964465993426204961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae72a967e003624a816fec1b35dc292, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  first: 1
-  next: {fileID: 0}
-  myBT: {fileID: 8661179866468249501}
-  myBTActiveChange: 0
-  returnBT: {fileID: 0}
---- !u!114 &2082050435287855775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2964465993426204961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 697381cd2bf92ac46aeadb4733f2b3e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 3427948483898473102}
-  - {fileID: 510270890416001761}
-  - {fileID: 2896768666218164655}
-  - {fileID: 775625876012268662}
 --- !u!1 &3030283178254372205
 GameObject:
   m_ObjectHideFlags: 0
