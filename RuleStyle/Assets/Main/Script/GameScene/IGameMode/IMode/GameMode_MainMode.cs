@@ -2,6 +2,10 @@ using UnityEngine;
 using UniRx;
 using System;
 
+
+/// <summary>
+/// ショット判定等を行える。基本的なモード
+/// </summary>
 public class GameMode_MainMode : IGameMode
 {
     GameSessionManager GameSceneManager;
@@ -72,13 +76,17 @@ public class GameMode_MainMode : IGameMode
         //カメラの宣言
         CameraRole();
 
+        //二回以上ショットできないようにする。
         if (ShotAfter==false)
         {
             //線引きとショットの関数
-            Line();
+            ShotLine();
         }
     }
 
+    /// <summary>
+    /// ここでカメラの処理を行っているため、現在のプレイヤーさえわかればカメラ処理は基本問題ない。
+    /// </summary>
     void CameraRole()
     {
         // 上限値に行けば数値を戻す
@@ -131,7 +139,10 @@ public class GameMode_MainMode : IGameMode
         GameSceneManager.CameraPosition.transform.rotation = Quaternion.Euler(fixedRotation);
     }
 
-    public void Line()
+    /// <summary>
+    /// ここで線とショット判定を行っている。
+    /// </summary>
+    public void ShotLine()
     {
         Vector3 cameraOffset = player.Player_GamePiece.transform.position - GameSceneManager.CameraPosition.transform.position;
 

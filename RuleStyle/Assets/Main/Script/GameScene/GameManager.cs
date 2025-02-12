@@ -18,8 +18,12 @@ public class GameManager : SingletonMonoBehaviourBase<GameManager>
     /// <summary>
     /// クリアする為の点数
     /// </summary>
-    public int ClearPoint = 0;
+    public int ClearPoint = 5;
 
+    /// <summary>
+    /// クリアしたプレイヤーを保存する。
+    /// </summary>
+    public List<variable_playerdata> ClearPlayer=new List<variable_playerdata>();
     /// <summary>
     /// 初期化
     /// </summary>

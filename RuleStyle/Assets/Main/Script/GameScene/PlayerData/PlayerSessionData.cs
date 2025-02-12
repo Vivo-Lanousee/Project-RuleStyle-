@@ -262,28 +262,13 @@ public class PlayerSessionData:IDisposable
     {
         switch (card.card_pattern)
         {
-            case Card_Pattern.Red:
-                //player.Card_Blue_EffectAward.Value = card;
-                BlueGiveCard();
-                break;
-            case Card_Pattern.Blue: 
-                player.Card_Blue.Value = card;
-                break;
-            case Card_Pattern.Yellow: 
-                 player.Card_Yellow.Value = card;
-                break;
-            case Card_Pattern.Green:
-                player.Card_Green.Value = card;
-                break;
-            case Card_Pattern.Purple:
-                player.Card_Purple.Value = card;
-                break;
+            
         }
     }
     /// <summary>
     /// 青のカードを誰かに付与する時の特殊関数。（UIに関わってきます。）
     /// </summary>
-    public void BlueGiveCard()
+    public void BlueCard()
     {
 
     }
@@ -380,30 +365,13 @@ public class PlayerSessionData:IDisposable
         }
 
         //終了時判定を行う(動かなければ起動判定
+        //ゴール時、この判定はAddToにより自動的に購読解除されるものとする。
         Player_GamePiece.transform.ObserveEveryValueChanged(x => x.position)
             .Throttle(TimeSpan.FromSeconds(1))
             .Take(1)//一回で自然にDisposeするようにする。
             .Subscribe(x =>
             { 
                 Debug.Log("ショット終了");
-                /*
-                //全員終了時の判定を確認、その後ルール成功時にルール適用する
-                foreach(var y in gameSessionManager.Session_Data) {
-                    if (y.Value.SuccessPoint)
-                    {
-                        y.Value.RuleSucces();
-
-                        //全体ルールを成功していない場合要素を追加
-                        if (gameSessionManager.ExchangeMember.Contains(y.Key)==false) 
-                        {
-                            gameSessionManager.ExchangeMember.AddLast(y.Key);
-                        }
-                        
-                        y.Value.SuccessPoint = false;
-                    }
-                }
-                RuleText_Exchange();
-                */
                 TurnEnd();
             })
             .AddTo(Player_GamePiece);
@@ -430,7 +398,10 @@ public class PlayerSessionData:IDisposable
 
                 y.Value.SuccessPoint = false;
             }
-        }
+        } 
+
+        //ターン終了時、必ず一度改変モードに移行する。
+        gameSessionManager.sceneContext.Mode_Change(new GameMode_ExchangeMode());
     }
 
     /// <summary>
@@ -453,6 +424,7 @@ public class PlayerSessionData:IDisposable
     {
         gameSessionManager.DeckDraw(this, 2);
 
+        //個人ルールを成功していない場合、ルール変更の処理を行う為のLinkedListに格納。
         if (gameSessionManager.ExchangeMember.Contains(this.PlayerId) == false)
         {
             gameSessionManager.ExchangeMember.AddLast(this.PlayerId);

@@ -182,6 +182,9 @@ public class GameSessionManager : MonoBehaviour
         return array;
     }
 
+    /// <summary>
+    /// ƒQ[ƒ€I—¹
+    /// </summary>
     private void OnDestroy()
     {
         Debug.Log("”j‰ó");

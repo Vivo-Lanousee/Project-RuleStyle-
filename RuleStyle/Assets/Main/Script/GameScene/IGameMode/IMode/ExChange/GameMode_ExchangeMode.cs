@@ -10,6 +10,24 @@ using UnityEngine;
 /// </summary>
 public class GameMode_ExchangeMode : IGameMode
 {
+    private GameSessionManager sessionManager;
+    /// <summary>
+    /// カードの情報とイベント付けを全て行う。
+    /// </summary>
+    /// <exception cref="System.NotImplementedException"></exception>
+    void IGameMode.Init()
+    {
+        sessionManager = GameSessionManager.Instance();
+        if (sessionManager.ExchangeMember.Count ==0)
+        {
+            Debug.Log("もう改変ができるメンバーはいません。");
+        }
+        else if(sessionManager.ExchangeMember.Count > 0)
+        {
+            Debug.Log("改変できるメンバーが存在します。");
+
+        }
+    }
     void IGameMode.Exit()
     {
         throw new System.NotImplementedException();
@@ -20,17 +38,38 @@ public class GameMode_ExchangeMode : IGameMode
         throw new System.NotImplementedException();
     }
 
-    /// <summary>
-    /// カードの情報とイベント付けを全て行う。
-    /// </summary>
-    /// <exception cref="System.NotImplementedException"></exception>
-    void IGameMode.Init()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     void IGameMode.Update()
     {
         throw new System.NotImplementedException();
+    }
+    /// <summary>
+    /// プレイヤー単位の変更
+    /// </summary>
+    /// <param name="UICompo"></param>
+    void LoadUI(Rule_UI_RuleComponent UIComponent, PlayerSessionData playerdata)
+    {
+        GameSessionManager manager = GameSessionManager.Instance();
+        //プレイヤーUI変更（もうすでに変更したの用意した方がいいかもしれない
+        UIComponent.PlayerImage.sprite = manager.card_Access["P" + playerdata.PlayerId.ToString() + "の"].cardUI;
+
+        //カードのUI変更(セッションデータで既にロードされているデータの為、基本的にカードはアタッチするだけで問題ない
+        UIComponent.Red_Card_EffectPiece.image.sprite = playerdata.Card_Red_EffectPiece.Value.cardUI;
+        UIComponent.Blue_Card.image.sprite = playerdata.Card_Blue.Value.cardUI;
+        UIComponent.Red_Card_EffectAward.image.sprite = playerdata.Card_Red_EffectAward.Value.cardUI;
+        UIComponent.Yellow_Card.image.sprite = playerdata.Card_Yellow.Value.cardUI;
+        UIComponent.Green_Card.image.sprite = playerdata.Card_Green.Value.cardUI;
+        UIComponent.Purple_Card.image.sprite = playerdata.Card_Purple.Value.cardUI;
+
+        //ルール文変更
+        UIComponent.RuleText.text = playerdata.Rule;
+    }
+    /// <summary>
+    /// プレイヤーデータを参照にUIにイベントを付けて行く作業
+    /// </summary>
+    public void AddOnClick(PlayerSessionData playerdata)
+    {
+
     }
 }

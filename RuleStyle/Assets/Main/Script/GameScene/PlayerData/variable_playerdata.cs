@@ -20,4 +20,8 @@ public class variable_playerdata
     }
     public int Id;
     public string PlayerName;
+    /// <summary>
+    /// ‡ˆÊ•t‚¯‚ğ•Û‘¶‚·‚é•Ï”
+    /// </summary>
+    public int Ranking=0;
 }
