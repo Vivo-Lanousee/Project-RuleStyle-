@@ -20,6 +20,7 @@ public class GameMode_ExchangeMode : IGameMode
         sessionManager = GameSessionManager.Instance();
         if (sessionManager.ExchangeMember.Count ==0)
         {
+            sessionManager.sceneContext.Mode_Change(new GameMode_TurnChange(sessionManager));
             Debug.Log("もう改変ができるメンバーはいません。");
         }
         else if(sessionManager.ExchangeMember.Count > 0)
@@ -30,19 +31,16 @@ public class GameMode_ExchangeMode : IGameMode
     }
     void IGameMode.Exit()
     {
-        throw new System.NotImplementedException();
     }
 
     void IGameMode.FixUpdate()
     {
-        throw new System.NotImplementedException();
     }
 
     
 
     void IGameMode.Update()
     {
-        throw new System.NotImplementedException();
     }
     /// <summary>
     /// プレイヤー単位の変更

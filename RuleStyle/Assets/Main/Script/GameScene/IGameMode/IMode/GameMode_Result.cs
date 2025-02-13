@@ -4,27 +4,23 @@ using UnityEngine;
 
 
 /// <summary>
-/// リザルトへ移行する
+/// リザルトへ移行する(こちらに全て処理を書いていただければ大体動きます。
 /// </summary>
 public class GameMode_Result : IGameMode
 {
     void IGameMode.Exit()
     {
-        throw new System.NotImplementedException();
     }
 
     void IGameMode.FixUpdate()
     {
-        throw new System.NotImplementedException();
     }
 
     void IGameMode.Init()
     {
-        throw new System.NotImplementedException();
     }
 
     void IGameMode.Update()
     {
-        throw new System.NotImplementedException();
     }
 }

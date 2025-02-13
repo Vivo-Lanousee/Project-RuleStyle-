@@ -15,15 +15,25 @@ public class GameMode_TurnChange : IGameMode
         }
         
         /// <summary>
-        /// クリア判定等を行う。
+        /// クリア判定後にターン変更の処理だけを行う。その時の行動
         /// </summary>
         void IGameMode.Init()
         {
+
             GameSceneManager= GameSessionManager.Instance();
-    }
+            GameSceneManager.CurrentTurnNum++;
+            if (GameSceneManager.CurrentTurnNum >= GameSceneManager.TurnList.Count)
+            {
+                GameSceneManager.CurrentTurnNum = 0;
+            }
+
+            //モードをメインシステムに
+                GameSceneManager.sceneContext.Mode_Change(new GameMode_MainMode(GameSceneManager));
+        }
 
         void IGameMode.Update()
         {
+
         }
 
 
