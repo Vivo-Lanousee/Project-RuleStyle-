@@ -26,15 +26,34 @@ public class Card_Blue_Attack : ICard
     /// </summary>
     void ICard.CardNum()
     {
-        Debug.Log("cccccccccccc");
         if (PlayerData != null)
         {
             //ショットイベントの念のための初期化
             PlayerData.BlueTrigger?.Dispose();
 
+            List<GameObject> EffectObjects = new List<GameObject>();
+            //効果対象のGameObjectList作成
+            foreach (var effect in PlayerData.EffectPiecePlayer_Id)
+            {
+                //オブジェクトが存在しない場合、判定は行われない。
+                if(GameSessionManager.Instance().Session_Data[effect].Player_GamePiece != null)
+                {
+                    EffectObjects.Add(GameSessionManager.Instance().Session_Data[effect].Player_GamePiece);
+                }
+                
+            }
+
+            EffectObjects.ConvertAll(obj => obj.GetComponent<Collider>()
+            .OnCollisionEnterAsObservable())
+                .Merge()
+                .Where(collision => collision.gameObject.GetComponent<Player_Attach>()!=null)//プレイヤーのみ
+                .Subscribe(_ => { });
+
+            /*
             //ショットイベント登録
             if (PlayerData.Player_GamePiece != null) 
             { 
+                
                 PlayerData.BlueTrigger = PlayerData?.Player_GamePiece
                 .OnTriggerEnterAsObservable()
                 .Take(1)//一回で自然にDisposeするようにする。
@@ -47,6 +66,10 @@ public class Card_Blue_Attack : ICard
                     }
                 }).AddTo(PlayerData.Player_GamePiece);
             }
+            */
+
+            //PlayerData.BlueTrigger = 
+               // PlayerData.
         }
     }
 }

@@ -21,6 +21,5 @@ public class Card_Red_EffectOne : ICard, ICard_Red
 
     void ICard.CardNum()
     {
-        //PlayerData.EffectPlayer_Id.Add(1);
     }
 }

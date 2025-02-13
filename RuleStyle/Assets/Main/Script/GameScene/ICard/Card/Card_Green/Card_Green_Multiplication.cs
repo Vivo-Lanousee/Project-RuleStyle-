@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
-/// ŒvZ•û–@:Š|‚¯Z
+/// ŒvZ•û–@:Š|‚¯Z(a”Å‚Å‚ÍÀ‘•‚µ‚È‚¢B
 /// </summary>
 public class Card_Green_Multiplication : ICard
 {

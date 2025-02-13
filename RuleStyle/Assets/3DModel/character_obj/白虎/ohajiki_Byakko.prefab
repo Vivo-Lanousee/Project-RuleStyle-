@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6749728975812596510}
   - component: {fileID: -3242440002773641587}
   - component: {fileID: 6037924755583786423}
+  - component: {fileID: 1411185870940957499}
   m_Layer: 0
   m_Name: ohajiki_Byakko
   m_TagString: Untagged
@@ -135,3 +136,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.02, z: 0.019999998}
   m_Center: {x: -4.656613e-10, y: 0, z: 0}
+--- !u!114 &1411185870940957499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6087855471261377738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aed4759af36c354ca7f3539e17b3e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

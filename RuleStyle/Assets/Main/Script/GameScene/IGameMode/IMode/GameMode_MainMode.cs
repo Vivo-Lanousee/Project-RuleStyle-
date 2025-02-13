@@ -82,6 +82,11 @@ public class GameMode_MainMode : IGameMode
             //線引きとショットの関数
             ShotLine();
         }
+
+
+        ////----「デバッグ用コンテンツ」－－－－
+
+
     }
 
     /// <summary>

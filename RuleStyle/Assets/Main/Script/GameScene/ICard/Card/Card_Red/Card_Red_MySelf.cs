@@ -29,9 +29,6 @@ public class Card_Red_MySelf : ICard,ICard_Red
     /// </summary>
     void ICard.CardNum()
     {
-        //カードプレイヤー自身にデータを帰属させる（要検討
-        //PlayerData.EffectPlayer_Id.Add(PlayerData.PlayerId);
-
         //カードプレイヤーを対象にする。
         EffectMember.Add(PlayerData.PlayerId);
     }

@@ -23,7 +23,7 @@ public class PlayerSessionData:IDisposable
 
     #region カードの変数
     /// <summary>
-    /// どの駒に効果が適応されるかどうか。
+    /// どの駒に効果が適応されるかどうかのカード。
     /// </summary>
     public ReactiveProperty<ICard> Card_Red_EffectPiece = new ReactiveProperty<ICard>();
 
@@ -128,6 +128,8 @@ public class PlayerSessionData:IDisposable
             if (_ != null)
             {
                 _.Card_PlayerChange(this);
+
+                //ここで自分のみ等の特殊処理を行う
                 _.CardNum();
 
                 //-------------------------------------------
@@ -136,7 +138,7 @@ public class PlayerSessionData:IDisposable
                 //ここやり方が不安なんだけど問題ないのだろうか
                 EffectPiecePlayer_Id = Red.EffectMember;
                 //-----------------------------------------------
-                Debug.Log("青(適用対象)カード変更");
+                Debug.Log("赤(適用対象)カード変更");
             }
             
         });
@@ -148,6 +150,8 @@ public class PlayerSessionData:IDisposable
                 {
                     EffectAwardPlayer_Id.Clear();
                     _.Card_PlayerChange(this);
+
+                    //ここで自分のみ等の特殊処理を行う
                     _.CardNum();
 
                     //-------------------------------------------
@@ -157,7 +161,7 @@ public class PlayerSessionData:IDisposable
                     EffectAwardPlayer_Id = red.EffectMember;
                     //-----------------------------------------------
 
-                    Debug.Log("(報酬対象)カード変更");
+                    Debug.Log("赤(報酬対象)カード変更");
                 }
             });
         

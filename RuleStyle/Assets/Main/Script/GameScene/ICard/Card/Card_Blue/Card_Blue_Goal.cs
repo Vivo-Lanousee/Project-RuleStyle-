@@ -29,6 +29,18 @@ public class Card_Blue_Goal : ICard
             //ショットイベントの念のための初期化
             PlayerData.BlueTrigger?.Dispose();
 
+            List<GameObject> EffectObjects = new List<GameObject>();
+            //効果対象のGameObjectList作成
+            foreach (var effect in PlayerData.EffectPiecePlayer_Id)
+            {
+                //オブジェクトが存在しない場合、判定は行われない。
+                if (GameSessionManager.Instance().Session_Data[effect].Player_GamePiece != null)
+                {
+                    EffectObjects.Add(GameSessionManager.Instance().Session_Data[effect].Player_GamePiece);
+                }
+
+            }
+
             //ショットイベント登録
             PlayerData.BlueTrigger = PlayerData.Player_GamePiece.OnTriggerEnterAsObservable()
                 .Take(1)//一回で自然にDisposeするようにする。
