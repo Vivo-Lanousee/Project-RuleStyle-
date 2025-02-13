@@ -27,6 +27,7 @@ public class Card_Blue_OverField : ICard
     {
         if (PlayerData != null)
         {
+
             //ショットイベントの念のための初期化
             PlayerData.BlueTrigger?.Dispose();
 

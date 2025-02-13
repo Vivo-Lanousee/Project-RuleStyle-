@@ -135,9 +135,14 @@ public class PlayerSessionData:IDisposable
                 //-------------------------------------------
                 //IBlueCardに一度キャストして変換する。
                 ICard_Red Red = (ICard_Red)_;
+
                 //ここやり方が不安なんだけど問題ないのだろうか
                 EffectPiecePlayer_Id = Red.EffectMember;
                 //-----------------------------------------------
+                foreach(var i in EffectPiecePlayer_Id)
+                {
+                    Debug.Log(i+"test");
+                }
                 Debug.Log("赤(適用対象)カード変更");
             }
             
@@ -361,6 +366,7 @@ public class PlayerSessionData:IDisposable
     /// </summary>
     public void ShotPoint()
     {
+
         //判定作成
         foreach (var x in gameSessionManager.Session_Data)
         {

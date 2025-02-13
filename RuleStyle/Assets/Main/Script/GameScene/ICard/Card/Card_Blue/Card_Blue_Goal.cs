@@ -24,33 +24,54 @@ public class Card_Blue_Goal : ICard
 
     void ICard.CardNum()
     {
-        if(PlayerData != null)
+        if (PlayerData != null)
         {
             //ショットイベントの念のための初期化
             PlayerData.BlueTrigger?.Dispose();
 
             List<GameObject> EffectObjects = new List<GameObject>();
+
             //効果対象のGameObjectList作成
             foreach (var effect in PlayerData.EffectPiecePlayer_Id)
             {
+                Debug.Log("Error");
                 //オブジェクトが存在しない場合、判定は行われない。
                 if (GameSessionManager.Instance().Session_Data[effect].Player_GamePiece != null)
                 {
                     EffectObjects.Add(GameSessionManager.Instance().Session_Data[effect].Player_GamePiece);
                 }
-
+                
             }
 
+            
+
+            PlayerData.BlueTrigger = EffectObjects.ConvertAll(obj => obj.GetComponent<Collider>()
+            .OnTriggerEnterAsObservable())
+                .Merge()
+                .Where(collision => collision.gameObject.GetComponent<GoalObject>() != null)//プレイヤーのみ
+                .Take(1)
+                .Subscribe(_ =>
+                {
+                    Debug.Log("判定成功");
+                    PlayerData.Success();
+                });
+
+            /*
             //ショットイベント登録
             PlayerData.BlueTrigger = PlayerData.Player_GamePiece.OnTriggerEnterAsObservable()
                 .Take(1)//一回で自然にDisposeするようにする。
                 .Subscribe(collider =>
-            { 
+            {
                 if (collider.gameObject.GetComponent<GoalObject>() != null)
                 {
                     PlayerData.Success();
                 }
             }).AddTo(PlayerData.Player_GamePiece);
+            */
+        }
+        else
+        {
+            
         }
     }
 }

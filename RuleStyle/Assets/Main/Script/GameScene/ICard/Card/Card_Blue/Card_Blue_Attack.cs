@@ -28,6 +28,7 @@ public class Card_Blue_Attack : ICard
     {
         if (PlayerData != null)
         {
+            Debug.Log("アタック判定作成");
             //ショットイベントの念のための初期化
             PlayerData.BlueTrigger?.Dispose();
 
@@ -43,11 +44,16 @@ public class Card_Blue_Attack : ICard
                 
             }
 
-            EffectObjects.ConvertAll(obj => obj.GetComponent<Collider>()
+            PlayerData.BlueTrigger=EffectObjects.ConvertAll(obj => obj.GetComponent<Collider>()
             .OnCollisionEnterAsObservable())
                 .Merge()
                 .Where(collision => collision.gameObject.GetComponent<Player_Attach>()!=null)//プレイヤーのみ
-                .Subscribe(_ => { });
+                .Take(1)
+                .Subscribe(_ => 
+                {
+                    Debug.Log("判定成功");
+                    PlayerData.Success();
+                });
 
             /*
             //ショットイベント登録

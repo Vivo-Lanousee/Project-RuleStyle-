@@ -47,11 +47,9 @@ public interface ICard
         {
             if (_.Result == null) 
             {
-                Debug.Log("test");
                 return;
             };
             cardUI =_.Result;
-            Debug.Log("testttttttt");
         };
     }
     

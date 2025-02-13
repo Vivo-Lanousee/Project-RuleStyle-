@@ -23,7 +23,9 @@ public class Card_Red_MySelf : ICard,ICard_Red
     /// <summary>
     /// カードBlueの時のみの実装となる。
     /// </summary>
-    public List<int> EffectMember => new List<int> {};
+    public List<int> EffectMember => _effectMember;
+
+    private List<int> _effectMember = new List<int>();
     /// <summary>
     /// 青は全て返り値で効果を行う
     /// </summary>
@@ -31,5 +33,10 @@ public class Card_Red_MySelf : ICard,ICard_Red
     {
         //カードプレイヤーを対象にする。
         EffectMember.Add(PlayerData.PlayerId);
+        
+        foreach (int i in EffectMember)
+        {
+            Debug.Log(i);
+        }
     }
 }
