@@ -183,6 +183,8 @@ public class PlayerSessionData:IDisposable
             if (_ != null)
             {
                 _.Card_PlayerChange(this);
+
+                RuleSuccessCalculation = _.CardName;
                 //Debug.Log("(計算方法の変更)カード変更");
             }
         });
@@ -260,24 +262,6 @@ public class PlayerSessionData:IDisposable
         action();
     }
 
-
-
-    /// <summary>
-    /// カードを誰かに変更する時の処理。「これじゃダメだった。ブルーが厳しくなる」
-    /// </summary>
-    public void GiveCard(ICard card,PlayerSessionData player)
-    {
-        
-    }
-    /// <summary>
-    /// 青のカードを誰かに付与する時の特殊関数。（UIに関わってきます。）
-    /// </summary>
-    public void BlueCard()
-    {
-
-    }
-
-
     /// <summary>
     /// マネージャー（UI変更等の時の処理
     /// </summary>
@@ -336,6 +320,10 @@ public class PlayerSessionData:IDisposable
     /// </summary>
     public int RuleSuccessNum = 0;
 
+    /// <summary>
+    ///　計算方法
+    /// </summary>
+    public string RuleSuccessCalculation;
     /// <summary>
     /// プレイヤーの点数
     /// </summary>
@@ -430,14 +418,14 @@ public class PlayerSessionData:IDisposable
     public void GoalReward()
     {
         gameSessionManager.DeckDraw(this, 2);
-
+        if (SuccessPoint)
+        {
+            Debug.Log("testしてみる");
+        }
         //個人ルールを成功していない場合、ルール変更の処理を行う為のLinkedListに格納。
         if (gameSessionManager.ExchangeMember.Contains(this.PlayerId) == false)
         {
-            if (SuccessPoint)
-            {
-                Debug.Log("testしてみる");
-            }
+            
             gameSessionManager.ExchangeMember.AddLast(this.PlayerId);
         }
 
