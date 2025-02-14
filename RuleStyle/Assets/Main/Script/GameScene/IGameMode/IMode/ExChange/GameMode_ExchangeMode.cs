@@ -11,6 +11,14 @@ using UnityEngine;
 public class GameMode_ExchangeMode : IGameMode
 {
     private GameSessionManager sessionManager;
+
+    ExChangeComponent ExChange;
+
+    /// <summary>
+    /// 現在の変更プレイヤ-を格納する。
+    /// </summary>
+    private PlayerSessionData Change_CurrentPlayer;
+
     /// <summary>
     /// カードの情報とイベント付けを全て行う。
     /// </summary>
@@ -25,8 +33,16 @@ public class GameMode_ExchangeMode : IGameMode
         }
         else if(sessionManager.ExchangeMember.Count > 0)
         {
-            ExChangeComponent ExChange=sessionManager.GetComponent<ExChangeComponent>();
+            ExChange=sessionManager.GetComponent<ExChangeComponent>();
             Debug.Log("改変できるメンバーが存在します。");
+
+            int current = sessionManager.ExchangeMember.First.Value;
+            sessionManager.ExchangeMember.RemoveFirst();
+            Change_CurrentPlayer = sessionManager.Session_Data[current];
+
+
+            AddOnClick(Change_CurrentPlayer);
+
 
         }
     }
@@ -69,6 +85,10 @@ public class GameMode_ExchangeMode : IGameMode
     /// </summary>
     public void AddOnClick(PlayerSessionData playerdata)
     {
-
+        ExChange.ExChangeEndButton.onClick.AddListener(() => 
+        {
+            //再度変更モードを読み込むことで全て消化する。
+            sessionManager.sceneContext.Mode_Change(new GameMode_ExchangeMode());
+        });
     }
 }

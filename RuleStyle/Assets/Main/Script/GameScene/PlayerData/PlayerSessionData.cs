@@ -356,7 +356,7 @@ public class PlayerSessionData:IDisposable
     /// <summary>
     /// 個人ルール成功時の関数
     /// </summary>
-    public void Success()
+    public void Success_Local()
     {
         SuccessPoint = true;
     }
@@ -400,7 +400,7 @@ public class PlayerSessionData:IDisposable
             {
                 y.Value.RuleSucces();
 
-                //全体ルールを成功していない場合要素を追加
+                //全体ルールを成功していない場合に改変できるようにする。
                 if (gameSessionManager.ExchangeMember.Contains(y.Key) == false)
                 {
                     gameSessionManager.ExchangeMember.AddLast(y.Key);

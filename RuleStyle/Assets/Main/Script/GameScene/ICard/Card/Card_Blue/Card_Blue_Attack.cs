@@ -52,7 +52,7 @@ public class Card_Blue_Attack : ICard
                 .Subscribe(_ => 
                 {
                     Debug.Log("判定成功");
-                    PlayerData.Success();
+                    PlayerData.Success_Local();
                 });
 
             /*
@@ -68,7 +68,7 @@ public class Card_Blue_Attack : ICard
                     if (x.gameObject != null)
                     {
                         Debug.Log("アタック判定");
-                        PlayerData.Success();
+                        PlayerData.Success_Local();
                     }
                 }).AddTo(PlayerData.Player_GamePiece);
             }

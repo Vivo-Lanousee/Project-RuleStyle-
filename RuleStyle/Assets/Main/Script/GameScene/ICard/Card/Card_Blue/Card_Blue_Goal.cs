@@ -53,7 +53,7 @@ public class Card_Blue_Goal : ICard
                 .Subscribe(_ =>
                 {
                     Debug.Log("îªíËê¨å˜");
-                    PlayerData.Success();
+                    PlayerData.Success_Local();
                 });
 
             /*
@@ -64,7 +64,7 @@ public class Card_Blue_Goal : ICard
             {
                 if (collider.gameObject.GetComponent<GoalObject>() != null)
                 {
-                    PlayerData.Success();
+                    PlayerData.Success_Local();
                 }
             }).AddTo(PlayerData.Player_GamePiece);
             */

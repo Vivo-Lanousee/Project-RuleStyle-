@@ -51,7 +51,7 @@ public class Card_Blue_OverField : ICard
                     if (collider.gameObject.GetComponent<OutPosition>() != null)
                     {
                         Debug.Log("èÍäOÇ≈Ç∑");
-                        PlayerData.Success();
+                        PlayerData.Success_Local();
                     }
                 }).AddTo(PlayerData.Player_GamePiece);
         }

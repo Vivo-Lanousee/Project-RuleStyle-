@@ -5,28 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/TitleTest.unity
     guid: 5d3161a3944889743b7698f8dc5ead39
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/Result.unity
     guid: 5a432b56c3163634dac77fa3b0c002d0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Script/LoaSystem/scene/GameUIPlayer.unity
     guid: 79a04d81b2cee9a48bfcf4023d273c50
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/GameUIchangeCard.unity
     guid: 8e94162bc4e9c1e45aa690cc7361bc29
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Script/LoaSystem/scene/Loadscene.unity
     guid: aae1df01b6c858b44a4979747f9fe692
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Script/LoaSystem/scene/Menu.unity
     guid: f6d34065179130a4792fb7bfe0d4bd24
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Script/LoaSystem/scene/VolumeSetting.unity
     guid: 91bf878720963ec40a4a200518b331f9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/GameTest.unity
     guid: 4fc200a43d30e7f4d8e64cec7fac3be1
   - enabled: 1
