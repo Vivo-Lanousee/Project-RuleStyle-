@@ -33,13 +33,14 @@ public class GameMode_ExchangeMode : IGameMode
         }
         else if(sessionManager.ExchangeMember.Count > 0)
         {
-            ExChange=sessionManager.GetComponent<ExChangeComponent>();
+            ExChange=sessionManager.ChangeScene.GetComponent<ExChangeComponent>();
             Debug.Log("改変できるメンバーが存在します。");
 
             int current = sessionManager.ExchangeMember.First.Value;
             sessionManager.ExchangeMember.RemoveFirst();
             Change_CurrentPlayer = sessionManager.Session_Data[current];
 
+            sessionManager.ChangeScene.SetActive(true);
 
             AddOnClick(Change_CurrentPlayer);
 
@@ -89,6 +90,9 @@ public class GameMode_ExchangeMode : IGameMode
         {
             //再度変更モードを読み込むことで全て消化する。
             sessionManager.sceneContext.Mode_Change(new GameMode_ExchangeMode());
+
+
+            sessionManager.ChangeScene.SetActive(false);
         });
     }
 }

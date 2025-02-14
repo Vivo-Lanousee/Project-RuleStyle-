@@ -139,11 +139,8 @@ public class PlayerSessionData:IDisposable
                 //ここやり方が不安なんだけど問題ないのだろうか
                 EffectPiecePlayer_Id = Red.EffectMember;
                 //-----------------------------------------------
-                foreach(var i in EffectPiecePlayer_Id)
-                {
-                    Debug.Log(i+"test");
-                }
-                Debug.Log("赤(適用対象)カード変更");
+                
+                //Debug.Log("赤(適用対象)カード変更");
             }
             
         });

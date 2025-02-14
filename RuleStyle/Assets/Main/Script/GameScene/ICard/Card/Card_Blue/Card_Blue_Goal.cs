@@ -34,7 +34,6 @@ public class Card_Blue_Goal : ICard
             //効果対象のGameObjectList作成
             foreach (var effect in PlayerData.EffectPiecePlayer_Id)
             {
-                Debug.Log("Error");
                 //オブジェクトが存在しない場合、判定は行われない。
                 if (GameSessionManager.Instance().Session_Data[effect].Player_GamePiece != null)
                 {
@@ -52,7 +51,6 @@ public class Card_Blue_Goal : ICard
                 .Take(1)
                 .Subscribe(_ =>
                 {
-                    Debug.Log("判定成功");
                     PlayerData.Success_Local();
                 });
 
