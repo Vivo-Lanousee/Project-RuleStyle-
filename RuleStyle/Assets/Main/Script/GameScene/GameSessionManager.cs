@@ -140,7 +140,7 @@ public class GameSessionManager : MonoBehaviour
                 {
                     Current += (float)x.ProbabilityNum;
 
-                    if (Max<Current)
+                    if (random < Current)
                     {
                         player.HandCards.Add(x);
                         DrawSuccess = true;
@@ -151,10 +151,16 @@ public class GameSessionManager : MonoBehaviour
             //乱数が総和以上の時末尾要素に
             if (DrawSuccess == false)
             {
-                player.HandCards.Add(cards[cards.Count]);
+                player.HandCards.Add(cards[cards.Count-1]);
             }
         }
         //Draw画面に移行する。
+
+
+        foreach(var x in player.HandCards)
+        {
+            Debug.Log(x.CardName+"デバッグ");
+        }
     }
 
     /// <summary>

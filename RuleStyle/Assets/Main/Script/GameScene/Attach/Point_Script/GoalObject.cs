@@ -16,6 +16,10 @@ public class GoalObject : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ƒS[ƒ‹‚É“ü‚Á‚Ä‚¢‚Ü‚·");
+        if (other.gameObject.GetComponent<Player_Attach> () != null)
+        {
+            other.gameObject.GetComponent<Player_Attach>()._playerData.GoalReward(); 
+            Destroy (other.gameObject);
+        }
     }
 }

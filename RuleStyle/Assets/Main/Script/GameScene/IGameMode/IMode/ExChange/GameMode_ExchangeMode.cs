@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 
@@ -14,10 +15,14 @@ public class GameMode_ExchangeMode : IGameMode
 
     ExChangeComponent ExChange;
 
+    private int Cost = 3;
+
     /// <summary>
     /// 現在の変更プレイヤ-を格納する。
     /// </summary>
     private PlayerSessionData Change_CurrentPlayer;
+
+    private List<ChangeData> Changes=new List<ChangeData>();
 
     /// <summary>
     /// カードの情報とイベント付けを全て行う。
@@ -34,7 +39,7 @@ public class GameMode_ExchangeMode : IGameMode
         else if(sessionManager.ExchangeMember.Count > 0)
         {
             ExChange=sessionManager.ChangeScene.GetComponent<ExChangeComponent>();
-            Debug.Log("改変できるメンバーが存在します。");
+            //Debug.Log("改変できるメンバーが存在します。");
 
             int current = sessionManager.ExchangeMember.First.Value;
             sessionManager.ExchangeMember.RemoveFirst();
@@ -44,19 +49,32 @@ public class GameMode_ExchangeMode : IGameMode
 
             AddOnClick(Change_CurrentPlayer);
 
-
+            foreach (var x in sessionManager.Session_Data)
+            {
+                switch (x.Value.PlayerId)
+                {
+                    case 1:
+                        LoadUI(ExChange.Player_One,x.Value);
+                        break;
+                    case 2:
+                        LoadUI(ExChange.Player_Two, x.Value);
+                        break; 
+                    case 3:
+                        LoadUI(ExChange.Player_Three, x.Value);
+                        break;
+                    case 4:
+                        LoadUI(ExChange.Player_Four, x.Value);
+                        break;
+                }
+            }
         }
     }
     void IGameMode.Exit()
     {
     }
-
     void IGameMode.FixUpdate()
     {
     }
-
-    
-
     void IGameMode.Update()
     {
     }
@@ -79,7 +97,70 @@ public class GameMode_ExchangeMode : IGameMode
         UIComponent.Purple_Card.image.sprite = playerdata.Card_Purple.Value.cardUI;
 
         //ルール文変更
-        UIComponent.RuleText.text = playerdata.Rule;
+        UIComponent.RuleText.text = playerdata.RuleText_Exchange();
+    }
+
+    void AddEvent_Player()
+    {
+
+    }
+
+    /// <summary>
+    /// 外す場合。
+    /// </summary>
+    void CardRemove()
+    {
+        if (Changes[0].data==Change_CurrentPlayer)
+        {
+            if (Cost-1 >=0)
+            {
+                Cost -= 1;
+            }
+            else
+            {
+                return;
+            }
+            
+        }
+        else
+        {
+            if (Cost - 2 >= 0)
+            {
+                Cost -= 2;
+            }
+            else
+            {
+                return;
+            }
+        }
+        switch (Changes[0].card_num)
+        {
+            case 1:
+                Changes[0].data.Remove_Red_EffectPiece();
+                break;
+            case 2:
+                Changes[0].data.Remove_Blue();
+                break;
+            case 3:
+                Changes[0].data.Remove_Red_EffectAward();
+                break;
+            case 4:
+                Changes[0].data.Remove_Yellow();
+                break;
+            case 5:
+                Changes[0].data.Remove_Green();
+                break;
+            case 6:
+                Changes[0].data.Remove_Purple();
+                break;
+        }
+    }
+    void CardChange()
+    {
+        if (Changes.Count == 2)
+        {
+            
+        }
     }
     /// <summary>
     /// プレイヤーデータを参照にUIにイベントを付けて行く作業
@@ -96,3 +177,4 @@ public class GameMode_ExchangeMode : IGameMode
         });
     }
 }
+

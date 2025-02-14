@@ -70,21 +70,22 @@ public class PlayerSessionData:IDisposable
     //Remove-色ーー特定色カードを基準カードに初期化
     #region Remove関数
 
-    private void Remove_Red_EffectPiece()
+    public void Remove_Red_EffectPiece()
     {
         Card_Red_EffectPiece.Value = new Card_Red_MySelf();
         Card_Red_EffectPiece.Value.Card_LoadData();
+    }
+    public void Remove_Blue()
+    {
+        Card_Blue.Value = new Card_Blue_Goal();
+        Card_Blue.Value.Card_LoadData();
     }
     public void Remove_Red_EffectAward()
     {
         Card_Red_EffectAward.Value = new Card_Red_MySelf();
         Card_Red_EffectAward.Value.Card_LoadData();
     }
-    public void Remove_Blue()
-    {
-        Card_Blue.Value= new Card_Blue_Goal();
-        Card_Blue.Value.Card_LoadData();
-    }
+    
     public void Remove_Yellow()
     {
         Card_Yellow.Value = new Card_Yellow_Point();
@@ -163,7 +164,7 @@ public class PlayerSessionData:IDisposable
                     EffectAwardPlayer_Id = red.EffectMember;
                     //-----------------------------------------------
 
-                    Debug.Log("赤(報酬対象)カード変更");
+                    //Debug.Log("赤(報酬対象)カード変更");
                 }
             });
         
@@ -173,7 +174,7 @@ public class PlayerSessionData:IDisposable
             if (_ != null)
             {
                 _.Card_PlayerChange(this);
-                Debug.Log("(ルール・判定)カード変更");
+                //Debug.Log("(ルール・判定)カード変更");
             }
         });
         //計算方法なのでCardNumは行わない。UI変更のみ
@@ -182,7 +183,7 @@ public class PlayerSessionData:IDisposable
             if (_ != null)
             {
                 _.Card_PlayerChange(this);
-                Debug.Log("(計算方法の変更)カード変更");
+                //Debug.Log("(計算方法の変更)カード変更");
             }
         });
         //CardNumは行わない。UI変更のみ
@@ -191,7 +192,7 @@ public class PlayerSessionData:IDisposable
             if (_ != null)
             {
                 _.Card_PlayerChange(this);
-                Debug.Log("（得点）カード変更");
+                //Debug.Log("（得点）カード変更");
             }
         });
         Card_Purple.Subscribe(_ =>
@@ -200,7 +201,7 @@ public class PlayerSessionData:IDisposable
             {
                 _.Card_PlayerChange(this);
                 _.CardNum();
-                Debug.Log("数値）カード変更");
+                //Debug.Log("数値）カード変更");
             }
         });
 
@@ -266,10 +267,7 @@ public class PlayerSessionData:IDisposable
     /// </summary>
     public void GiveCard(ICard card,PlayerSessionData player)
     {
-        switch (card.card_pattern)
-        {
-            
-        }
+        
     }
     /// <summary>
     /// 青のカードを誰かに付与する時の特殊関数。（UIに関わってきます。）
@@ -418,8 +416,6 @@ public class PlayerSessionData:IDisposable
     {
         //個人ルール達成時のリワード
         Card_Yellow.Value.CardNum();
-
-        
     }
 
     /// <summary>
@@ -466,6 +462,8 @@ public class PlayerSessionData:IDisposable
                 break;
         }
         Death = false;
+
+        Player_GamePiece.GetComponent<Player_Attach>()._playerData = this;
 
         /*
         //生成時、全体ルールを適応した場合。

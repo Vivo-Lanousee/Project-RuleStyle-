@@ -73,20 +73,18 @@ public class GameMode_MainMode : IGameMode
     /// </summary>
     void IGameMode.Update()
     {
-        //カメラの宣言
-        CameraRole();
-
-        //二回以上ショットできないようにする。
-        if (ShotAfter==false)
+        if (player.Player_GamePiece)
         {
-            //線引きとショットの関数
-            ShotLine();
+            //カメラの宣言
+            CameraRole();
+
+            //二回以上ショットできないようにする。
+            if (ShotAfter == false)
+            {
+                //線引きとショットの関数
+                ShotLine();
+            }
         }
-
-
-        ////----「デバッグ用コンテンツ」－－－－
-
-
     }
 
     /// <summary>
