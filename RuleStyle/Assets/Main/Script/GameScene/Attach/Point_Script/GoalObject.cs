@@ -18,7 +18,7 @@ public class GoalObject : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Player_Attach> () != null)
         {
-            other.gameObject.GetComponent<Player_Attach>()._playerData.GoalReward(); 
+            other.gameObject.GetComponent<Player_Attach>()._playerData.GoalReward();
             Destroy (other.gameObject);
         }
     }

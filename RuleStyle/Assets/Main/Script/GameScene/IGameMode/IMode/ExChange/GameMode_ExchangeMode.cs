@@ -34,7 +34,8 @@ public class GameMode_ExchangeMode : IGameMode
         if (sessionManager.ExchangeMember.Count ==0)
         {
             sessionManager.sceneContext.Mode_Change(new GameMode_TurnChange(sessionManager));
-            Debug.Log("もう改変ができるメンバーはいません。");
+            Debug.Log("メインモードに戻る");
+            Debug.Log("デバッグ用：残り" + sessionManager.ExchangeMember.Count + "人");
         }
         else if(sessionManager.ExchangeMember.Count > 0)
         {
@@ -67,7 +68,13 @@ public class GameMode_ExchangeMode : IGameMode
                         break;
                 }
             }
+
+            sessionManager.ChangeScene.GetComponent<ExChangeComponent>().CurrentPlayerImage.sprite = sessionManager.card_Access["P" + Change_CurrentPlayer.PlayerId.ToString() + "の"].cardUI;
+            HandLoad();
+
         }
+
+        
     }
     void IGameMode.Exit()
     {
@@ -100,6 +107,34 @@ public class GameMode_ExchangeMode : IGameMode
         UIComponent.RuleText.text = playerdata.RuleText_Exchange();
     }
 
+    void HandLoad()
+    {
+        int num = 1;
+        foreach (var a in Change_CurrentPlayer.HandCards)
+        {
+            switch (num)
+            {
+                case 1:
+                    sessionManager._HandCard_Component.card_one.image.sprite = a.cardUI;
+                    break;
+                case 2:
+                    sessionManager._HandCard_Component.card_two.image.sprite = a.cardUI;
+                    break;
+                case 3:
+                    sessionManager._HandCard_Component.card_three.image.sprite = a.cardUI;
+                    break;
+                case 4:
+                    sessionManager._HandCard_Component.card_four.image.sprite = a.cardUI;
+                    break;
+                case 5:
+                    sessionManager._HandCard_Component.card_five.image.sprite = a.cardUI;
+                    break;
+            }
+
+            num++;
+        }
+        
+    }
     void AddEvent_Player()
     {
 
@@ -167,13 +202,12 @@ public class GameMode_ExchangeMode : IGameMode
     /// </summary>
     public void AddOnClick(PlayerSessionData playerdata)
     {
+        ExChange.ExChangeEndButton.onClick.RemoveAllListeners();
         ExChange.ExChangeEndButton.onClick.AddListener(() => 
         {
+            sessionManager.ChangeScene.SetActive(false);
             //再度変更モードを読み込むことで全て消化する。
             sessionManager.sceneContext.Mode_Change(new GameMode_ExchangeMode());
-
-
-            sessionManager.ChangeScene.SetActive(false);
         });
     }
 }

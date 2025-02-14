@@ -331,7 +331,9 @@ public class PlayerSessionData:IDisposable
     /// </summary>
     public List<ICard> HandCards = new List<ICard>();
 
-    //個人ルール成功時の報酬量（赤カードで変更される）
+    /// <summary>
+    /// 個人ルール成功時の報酬量（青カードで変更される）
+    /// </summary>
     public int RuleSuccessNum = 0;
 
     /// <summary>
@@ -388,6 +390,7 @@ public class PlayerSessionData:IDisposable
     /// </summary>
     public void TurnEnd()
     {
+
         //全員終了時の判定を確認、その後ルール成功時にルール適用する
         foreach (var y in gameSessionManager.Session_Data)
         {
@@ -398,7 +401,7 @@ public class PlayerSessionData:IDisposable
                 //全体ルールを成功していない場合に改変できるようにする。
                 if (gameSessionManager.ExchangeMember.Contains(y.Key) == false)
                 {
-                    gameSessionManager.ExchangeMember.AddLast(y.Key);
+                    //gameSessionManager.ExchangeMember.AddLast(y.Key);
                 }
 
                 y.Value.SuccessPoint = false;
@@ -414,6 +417,7 @@ public class PlayerSessionData:IDisposable
     /// </summary>
     public void RuleSucces()
     {
+
         //個人ルール達成時のリワード
         Card_Yellow.Value.CardNum();
     }
@@ -430,6 +434,10 @@ public class PlayerSessionData:IDisposable
         //個人ルールを成功していない場合、ルール変更の処理を行う為のLinkedListに格納。
         if (gameSessionManager.ExchangeMember.Contains(this.PlayerId) == false)
         {
+            if (SuccessPoint)
+            {
+                Debug.Log("testしてみる");
+            }
             gameSessionManager.ExchangeMember.AddLast(this.PlayerId);
         }
 

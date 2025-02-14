@@ -6,6 +6,9 @@ using UnityEngine.UI;
 /// </summary>
 public class ExChangeComponent : MonoBehaviour
 {
+    public Image CurrentPlayerImage;
+
+    [Header("プレイヤーのコンポーネント")]
     //Playerの細かい対応UIはRuleComponent内に。
     //UI_Xのようなナンバーは対応するUserがいない場合消失させるものとする。
     #region プレイヤーコンポーネント

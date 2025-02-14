@@ -92,6 +92,8 @@ public class GameSessionManager : MonoBehaviour
     /// </summary>
     public GameObject ChangeScene;
 
+    public HandCard_Component _HandCard_Component;
+
     void Start()
     {
 
@@ -155,12 +157,6 @@ public class GameSessionManager : MonoBehaviour
             }
         }
         //Draw画面に移行する。
-
-
-        foreach(var x in player.HandCards)
-        {
-            Debug.Log(x.CardName+"デバッグ");
-        }
     }
 
     /// <summary>
