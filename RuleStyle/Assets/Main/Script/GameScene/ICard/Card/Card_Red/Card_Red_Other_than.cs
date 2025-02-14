@@ -20,14 +20,15 @@ public class Card_Red_Other_than : ICard, ICard_Red
     /// <summary>
     /// カードBlueの時のみの実装となる。
     /// </summary>
-    public List<int> EffectMember => new List<int> {};
+    public List<int> EffectMember => _effectMember;
+
+    private List<int> _effectMember = new List<int>();
     Sprite ICard.cardUI { get; set; }
     /// <summary>
     /// 青は全て返り値で効果を行う
     /// </summary>
     void ICard.CardNum()
     {
-        Debug.Log("カード自分以外");
         GameSessionManager gameManager = GameSessionManager.Instance();
         foreach (var i in gameManager.Session_Data)
         {

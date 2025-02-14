@@ -85,6 +85,13 @@ public class GameSessionManager : MonoBehaviour
     /// 基本的にこのラインレンダラーしか使用しない。
     /// </summary>
     public LineRenderer Arrowline;
+
+    [Header("変更シーン")]
+    /// <summary>
+    /// 変更する時のシーン
+    /// </summary>
+    public GameObject ChangeScene;
+
     void Start()
     {
 

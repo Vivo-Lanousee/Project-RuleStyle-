@@ -16,5 +16,5 @@ public class Rule_UI_RuleComponent
     public Button Yellow_Card;
     public Button Green_Card;
     public Button Purple_Card;
-    public TMPro.TextMeshPro RuleText;
+    public TMPro.TextMeshProUGUI RuleText;
 }

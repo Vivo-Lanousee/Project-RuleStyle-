@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Rule変更画面のコンポーネント
@@ -20,5 +21,6 @@ public class ExChangeComponent : MonoBehaviour
 
     //
 
-
+    [Header("イベント用変数")]
+    public Button ExChangeEndButton;
 }

@@ -33,10 +33,5 @@ public class Card_Red_MySelf : ICard,ICard_Red
     {
         //カードプレイヤーを対象にする。
         EffectMember.Add(PlayerData.PlayerId);
-        
-        foreach (int i in EffectMember)
-        {
-            Debug.Log(i);
-        }
     }
 }

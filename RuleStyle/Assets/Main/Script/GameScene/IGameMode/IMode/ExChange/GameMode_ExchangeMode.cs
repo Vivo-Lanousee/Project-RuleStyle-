@@ -25,6 +25,7 @@ public class GameMode_ExchangeMode : IGameMode
         }
         else if(sessionManager.ExchangeMember.Count > 0)
         {
+            ExChangeComponent ExChange=sessionManager.GetComponent<ExChangeComponent>();
             Debug.Log("‰ü•Ï‚Å‚«‚éƒƒ“ƒo[‚ª‘¶İ‚µ‚Ü‚·B");
 
         }
