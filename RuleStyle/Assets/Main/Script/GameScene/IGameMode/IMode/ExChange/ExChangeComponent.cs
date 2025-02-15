@@ -26,4 +26,11 @@ public class ExChangeComponent : MonoBehaviour
 
     [Header("イベント用変数")]
     public Button ExChangeEndButton;
+
+    public Button ExChange_or_Remove_StartButton;
+
+    [Header("コスト用変数")]
+    public Image Cost_One;
+    public Image Cost_Two;
+    public Image Cost_Three;
 }

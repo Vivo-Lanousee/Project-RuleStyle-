@@ -23,7 +23,6 @@ public class Card_Yellow_Point : ICard
         {
             if (PlayerData.RuleSuccessCalculation=="+")
             {
-
                 PlayerData.PlayerPoint += PlayerData.RuleSuccessNum;
             }
             else if(PlayerData.RuleSuccessCalculation=="-") {
