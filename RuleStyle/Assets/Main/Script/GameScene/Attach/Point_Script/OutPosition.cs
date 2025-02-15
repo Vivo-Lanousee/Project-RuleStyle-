@@ -9,6 +9,7 @@ public class OutPosition : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        other.gameObject.GetComponent<Player_Attach>()._playerData.TurnEnd();
         Destroy(other.gameObject);
     }
 }

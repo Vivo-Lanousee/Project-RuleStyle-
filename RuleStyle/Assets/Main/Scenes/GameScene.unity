@@ -7904,6 +7904,9 @@ MonoBehaviour:
     RuleText: {fileID: 8569982109882164432}
   ExChangeEndButton: {fileID: 8661179867735113959}
   ExChange_or_Remove_StartButton: {fileID: 7561167744835233570}
+  Cost_One: {fileID: 628621214094106695}
+  Cost_Two: {fileID: 6642917842930927665}
+  Cost_Three: {fileID: 84836124967260783}
 --- !u!114 &6389458176248364237
 MonoBehaviour:
   m_ObjectHideFlags: 0

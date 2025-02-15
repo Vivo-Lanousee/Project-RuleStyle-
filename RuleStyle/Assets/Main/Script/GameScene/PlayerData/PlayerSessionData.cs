@@ -378,26 +378,28 @@ public class PlayerSessionData:IDisposable
     /// </summary>
     public void TurnEnd()
     {
-
-        //全員終了時の判定を確認、その後ルール成功時にルール適用する
-        foreach (var y in gameSessionManager.Session_Data)
+        if (gameSessionManager.NowPlayer().PlayerId==PlayerId)
         {
-            if (y.Value.SuccessPoint)
+            //全員終了時の判定を確認、その後ルール成功時にルール適用する
+            foreach (var y in gameSessionManager.Session_Data)
             {
-                y.Value.RuleSucces();
-
-                //全体ルールを成功していない場合に改変できるようにする。
-                if (gameSessionManager.ExchangeMember.Contains(y.Key) == false)
+                if (y.Value.SuccessPoint)
                 {
-                    //gameSessionManager.ExchangeMember.AddLast(y.Key);
+                    y.Value.RuleSucces();
+
+                    //全体ルールを成功していない場合に改変できるようにする。
+                    if (gameSessionManager.ExchangeMember.Contains(y.Key) == false)
+                    {
+                        //gameSessionManager.ExchangeMember.AddLast(y.Key);
+                    }
+
+                    y.Value.SuccessPoint = false;
                 }
-
-                y.Value.SuccessPoint = false;
             }
-        } 
 
-        //ターン終了時、必ず一度改変モードに移行する。
-        gameSessionManager.sceneContext.Mode_Change(new GameMode_ExchangeMode());
+            //ターン終了時、必ず一度改変モードに移行する。
+            gameSessionManager.sceneContext.Mode_Change(new GameMode_ExchangeMode());
+        }
     }
 
     /// <summary>
