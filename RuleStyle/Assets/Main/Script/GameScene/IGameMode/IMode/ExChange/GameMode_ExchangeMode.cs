@@ -527,6 +527,7 @@ public class GameMode_ExchangeMode : IGameMode
                 
                 break;
         }
+        AllLoadUI();
     }
     /// <summary>
     /// プレイヤーデータを参照にUIにイベントを付けて行く作業
