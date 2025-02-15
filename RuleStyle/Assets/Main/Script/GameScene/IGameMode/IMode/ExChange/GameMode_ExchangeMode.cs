@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
-
-
-
+using UnityEngine.XR;
 
 /// <summary>
 /// カード変更シーンの設定。
@@ -26,6 +24,7 @@ public class GameMode_ExchangeMode : IGameMode
     private ChangeData Changes=null;
 
     private ICard HandCards=null;
+    private int HandCardSelect=0;
 
     private IDisposable CostEvent;
 
@@ -107,6 +106,9 @@ public class GameMode_ExchangeMode : IGameMode
     {
     }
 
+    /// <summary>
+    ///　保持カードUI（手札以外）を全て変更
+    /// </summary>
     void AllLoadUI()
     {
         foreach (var x in sessionManager.Session_Data)
@@ -308,6 +310,11 @@ public class GameMode_ExchangeMode : IGameMode
     /// </summary>
     void HandCardDataOnClick()
     {
+        sessionManager._HandCard_Component.card_one.onClick.RemoveAllListeners();
+        sessionManager._HandCard_Component.card_two.onClick.RemoveAllListeners();
+        sessionManager._HandCard_Component.card_three.onClick.RemoveAllListeners();
+        sessionManager._HandCard_Component.card_four.onClick.RemoveAllListeners();
+        sessionManager._HandCard_Component.card_five.onClick.RemoveAllListeners();
         int num = 0;
         foreach(var x in Change_CurrentPlayer.HandCards)
         {
@@ -318,6 +325,7 @@ public class GameMode_ExchangeMode : IGameMode
                     sessionManager._HandCard_Component.card_one.onClick.AddListener(() => 
                     {
                         HandCards = x;
+                        HandCardSelect = 0;
                     });
                     break; 
                 case 1:
@@ -325,6 +333,7 @@ public class GameMode_ExchangeMode : IGameMode
                     sessionManager._HandCard_Component.card_two.onClick.AddListener(() =>
                     {
                         HandCards = x;
+                        HandCardSelect = 1;
                     });
                     break;
                 case 2:
@@ -332,6 +341,7 @@ public class GameMode_ExchangeMode : IGameMode
                     sessionManager._HandCard_Component.card_three.onClick.AddListener(() =>
                     {
                         HandCards = x;
+                        HandCardSelect = 2;
                     });
                     break; 
                 case 3:
@@ -339,6 +349,7 @@ public class GameMode_ExchangeMode : IGameMode
                     sessionManager._HandCard_Component.card_four.onClick.AddListener(() =>
                     {
                         HandCards = x;
+                        HandCardSelect = 3;
                     });
                     break;
                 case 4:
@@ -346,6 +357,7 @@ public class GameMode_ExchangeMode : IGameMode
                     sessionManager._HandCard_Component.card_five.onClick.AddListener(() =>
                     {
                         HandCards = x;
+                        HandCardSelect = 4;
                     });
                     break;
             }
@@ -383,6 +395,12 @@ public class GameMode_ExchangeMode : IGameMode
 
     void HandLoad()
     {
+        sessionManager._HandCard_Component.card_one.image.sprite = null;
+        sessionManager._HandCard_Component.card_two.image.sprite = null;
+        sessionManager._HandCard_Component.card_three.image.sprite = null;
+        sessionManager._HandCard_Component.card_four.image.sprite = null;
+        sessionManager._HandCard_Component.card_five.image.sprite = null;
+
         int num = 1;
         foreach (var a in Change_CurrentPlayer.HandCards)
         {
@@ -527,7 +545,10 @@ public class GameMode_ExchangeMode : IGameMode
                 
                 break;
         }
+        Change_CurrentPlayer.HandCards.RemoveAt(HandCardSelect);
         AllLoadUI();
+        HandLoad();
+        HandCardDataOnClick();
     }
     /// <summary>
     /// プレイヤーデータを参照にUIにイベントを付けて行く作業
