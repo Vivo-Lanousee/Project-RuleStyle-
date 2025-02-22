@@ -378,8 +378,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u81EA\u5206\u306E\u30B4\u30FC\u30EB\u3067\u81EA\u5206\u306E\u5F97\u70B9\uFF0B1"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 12e810db0c5960b4c83df2fd35cc7b4d, type: 2}
-  m_sharedMaterial: {fileID: 8884785347139883119, guid: 12e810db0c5960b4c83df2fd35cc7b4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1242,8 +1242,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u81EA\u5206\u4EE5\u5916\u306E\u99D2\u304C\u76F8\u624B\u306E\u99D2\u306B\u3042\u305F\u308B\u3053\u3068\u3067\u3001\u81EA\u5206\u4EE5\u5916\u306E\u6539\u5909\u30AB\u30FC\u30C9+3"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 12e810db0c5960b4c83df2fd35cc7b4d, type: 2}
-  m_sharedMaterial: {fileID: 8884785347139883119, guid: 12e810db0c5960b4c83df2fd35cc7b4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1574,8 +1574,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u81EA\u5206\u4EE5\u5916\u306E\u99D2\u304C\u76F8\u624B\u306E\u99D2\u306B\u3042\u305F\u308B\u3053\u3068\u3067\u3001\u81EA\u5206\u4EE5\u5916\u306E\u6539\u5909\u30AB\u30FC\u30C9+3"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 12e810db0c5960b4c83df2fd35cc7b4d, type: 2}
-  m_sharedMaterial: {fileID: 8884785347139883119, guid: 12e810db0c5960b4c83df2fd35cc7b4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2223,6 +2223,7 @@ GameObject:
   - component: {fileID: 1210517013}
   - component: {fileID: 1210517014}
   - component: {fileID: 1210517015}
+  - component: {fileID: 1210517016}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2389,6 +2390,64 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1210517016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210517011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5df4c187f0af4498f28f63f87e9178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentPlayerImage: {fileID: 2101182088212933896}
+  UI_One: {fileID: 5812777490433084098}
+  Player_One:
+    PlayerImage: {fileID: 8681419154757952757}
+    Red_Card_EffectPiece: {fileID: 6498523867883238453}
+    Blue_Card: {fileID: 3948602127184864886}
+    Red_Card_EffectAward: {fileID: 7578626368389996988}
+    Yellow_Card: {fileID: 9142711219303173942}
+    Green_Card: {fileID: 6695641749620413937}
+    Purple_Card: {fileID: 8354299623556395452}
+    RuleText: {fileID: 6580096216330761515}
+  UI_Two: {fileID: 6912880525860826470}
+  Player_Two:
+    PlayerImage: {fileID: 2997844882652659590}
+    Red_Card_EffectPiece: {fileID: 3881933531291246016}
+    Blue_Card: {fileID: 388088936278165348}
+    Red_Card_EffectAward: {fileID: 3032767218548222879}
+    Yellow_Card: {fileID: 3771984665359716660}
+    Green_Card: {fileID: 1385163441136300430}
+    Purple_Card: {fileID: 9133624913198331338}
+    RuleText: {fileID: 3758866382008171611}
+  UI_Three: {fileID: 799022085704943365}
+  Player_Three:
+    PlayerImage: {fileID: 2654811421561740840}
+    Red_Card_EffectPiece: {fileID: 8441510507227720282}
+    Blue_Card: {fileID: 6150538522092668382}
+    Red_Card_EffectAward: {fileID: 3722239987250921995}
+    Yellow_Card: {fileID: 4713413125174661754}
+    Green_Card: {fileID: 4792616191491269643}
+    Purple_Card: {fileID: 7282610776183743443}
+    RuleText: {fileID: 2273055428208843100}
+  UI_Four: {fileID: 8562371905735546939}
+  Player_Four:
+    PlayerImage: {fileID: 6389458176248364237}
+    Red_Card_EffectPiece: {fileID: 6014271200374933546}
+    Blue_Card: {fileID: 6895023866154137667}
+    Red_Card_EffectAward: {fileID: 7705262608484094781}
+    Yellow_Card: {fileID: 9061808257407697644}
+    Green_Card: {fileID: 7253237669460898428}
+    Purple_Card: {fileID: 6560860477290172303}
+    RuleText: {fileID: 8569982109882164432}
+  ExChangeEndButton: {fileID: 8661179867735113959}
+  ExChange_or_Remove_StartButton: {fileID: 7561167744835233570}
+  Cost_One: {fileID: 628621214094106695}
+  Cost_Two: {fileID: 6642917842930927665}
+  Cost_Three: {fileID: 84836124967260783}
 --- !u!1 &1251961291 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3be3bf753d3b4ae498d050743341ce6d, type: 3}
@@ -2967,8 +3026,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u81EA\u5206\u306E\u30B4\u30FC\u30EB\u3067\u81EA\u5206\u306E\u5F97\u70B9\uFF0B1"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 12e810db0c5960b4c83df2fd35cc7b4d, type: 2}
-  m_sharedMaterial: {fileID: 8884785347139883119, guid: 12e810db0c5960b4c83df2fd35cc7b4d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5500,7 +5559,6 @@ GameObject:
   - component: {fileID: 1224508069936210479}
   - component: {fileID: 6116528125390136066}
   - component: {fileID: 5374879458118185787}
-  - component: {fileID: 6340031697108366649}
   m_Layer: 5
   m_Name: ExchangeUI
   m_TagString: Untagged
@@ -7849,64 +7907,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &6340031697108366649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2964465992545326683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca5df4c187f0af4498f28f63f87e9178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentPlayerImage: {fileID: 2101182088212933896}
-  UI_One: {fileID: 5812777490433084098}
-  Player_One:
-    PlayerImage: {fileID: 8681419154757952757}
-    Red_Card_EffectPiece: {fileID: 6498523867883238453}
-    Blue_Card: {fileID: 3948602127184864886}
-    Red_Card_EffectAward: {fileID: 7578626368389996988}
-    Yellow_Card: {fileID: 9142711219303173942}
-    Green_Card: {fileID: 6695641749620413937}
-    Purple_Card: {fileID: 8354299623556395452}
-    RuleText: {fileID: 6580096216330761515}
-  UI_Two: {fileID: 6912880525860826470}
-  Player_Two:
-    PlayerImage: {fileID: 2997844882652659590}
-    Red_Card_EffectPiece: {fileID: 3881933531291246016}
-    Blue_Card: {fileID: 388088936278165348}
-    Red_Card_EffectAward: {fileID: 3032767218548222879}
-    Yellow_Card: {fileID: 3771984665359716660}
-    Green_Card: {fileID: 1385163441136300430}
-    Purple_Card: {fileID: 9133624913198331338}
-    RuleText: {fileID: 3758866382008171611}
-  UI_Three: {fileID: 799022085704943365}
-  Player_Three:
-    PlayerImage: {fileID: 2654811421561740840}
-    Red_Card_EffectPiece: {fileID: 8441510507227720282}
-    Blue_Card: {fileID: 6150538522092668382}
-    Red_Card_EffectAward: {fileID: 3722239987250921995}
-    Yellow_Card: {fileID: 4713413125174661754}
-    Green_Card: {fileID: 4792616191491269643}
-    Purple_Card: {fileID: 7282610776183743443}
-    RuleText: {fileID: 2273055428208843100}
-  UI_Four: {fileID: 8562371905735546939}
-  Player_Four:
-    PlayerImage: {fileID: 6389458176248364237}
-    Red_Card_EffectPiece: {fileID: 6014271200374933546}
-    Blue_Card: {fileID: 6895023866154137667}
-    Red_Card_EffectAward: {fileID: 7705262608484094781}
-    Yellow_Card: {fileID: 9061808257407697644}
-    Green_Card: {fileID: 7253237669460898428}
-    Purple_Card: {fileID: 6560860477290172303}
-    RuleText: {fileID: 8569982109882164432}
-  ExChangeEndButton: {fileID: 8661179867735113959}
-  ExChange_or_Remove_StartButton: {fileID: 7561167744835233570}
-  Cost_One: {fileID: 628621214094106695}
-  Cost_Two: {fileID: 6642917842930927665}
-  Cost_Three: {fileID: 84836124967260783}
 --- !u!114 &6389458176248364237
 MonoBehaviour:
   m_ObjectHideFlags: 0

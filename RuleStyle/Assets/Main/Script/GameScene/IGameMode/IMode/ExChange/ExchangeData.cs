@@ -4,11 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 変更する為のデータ
+/// 変更する為に『どのプレイヤーのどのカードを選択しているか』
+/// を指す
 /// </summary>
 public class ChangeData
 {
+    /// <summary>
+    /// どのプレイヤーか
+    /// </summary>
     public PlayerSessionData data;
-    public int card_num;//NoCard
+    /// <summary>
+    /// ルールのどの部分を選択しているかを指す
+    /// </summary>
+    public int Select_CardNum;
 
 }

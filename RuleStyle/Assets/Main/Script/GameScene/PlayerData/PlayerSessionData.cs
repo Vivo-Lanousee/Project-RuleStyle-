@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 /// <summary>
 /// セッションプレイヤーデータ
 /// MonoBehaviorは使わず、Playerの駒にアタッチするスクリプトは別枠で作成する
@@ -58,48 +59,55 @@ public class PlayerSessionData:IDisposable
     /// <summary>
     /// キャラクターのカードの情報をリセットする
     /// </summary>
-    public void Reset_All()
+    public async void Reset_All()
     {
-        Remove_Red_EffectPiece();
-        Remove_Red_EffectAward();
-        Remove_Blue();
-        Remove_Yellow();
-        Remove_Green();
-        Remove_Purple();
+        await Remove_Red_EffectPiece();
+       await Remove_Red_EffectAward();
+        await Remove_Blue();
+        await Remove_Yellow();
+        await Remove_Green();
+        await Remove_Purple();
     }
     //Remove-色ーー特定色カードを基準カードに初期化
     #region Remove関数
 
-    public void Remove_Red_EffectPiece()
+    public async Task Remove_Red_EffectPiece()
     {
         Card_Red_EffectPiece.Value = new Card_Red_MySelf();
         Card_Red_EffectPiece.Value.Card_LoadData();
+        await UniTask.WaitUntil(() => Card_Red_EffectPiece.Value.cardUI != null);
+
     }
-    public void Remove_Blue()
+    public async Task Remove_Blue()
     {
         Card_Blue.Value = new Card_Blue_Goal();
         Card_Blue.Value.Card_LoadData();
+        await UniTask.WaitUntil(() => Card_Blue.Value.cardUI != null);
     }
-    public void Remove_Red_EffectAward()
+    public async Task Remove_Red_EffectAward()
     {
         Card_Red_EffectAward.Value = new Card_Red_MySelf();
         Card_Red_EffectAward.Value.Card_LoadData();
+        await UniTask.WaitUntil(() => Card_Red_EffectAward.Value.cardUI != null);
     }
     
-    public void Remove_Yellow()
+    public async Task Remove_Yellow()
     {
         Card_Yellow.Value = new Card_Yellow_Point();
         Card_Yellow.Value.Card_LoadData();
+        await UniTask.WaitUntil(() => Card_Yellow.Value.cardUI != null);
     }
-    public void Remove_Green()
+    public async Task Remove_Green()
     {
         Card_Green.Value = new Card_Green_Plus();  
         Card_Green.Value.Card_LoadData();
+        await UniTask.WaitUntil(() => Card_Green.Value.cardUI != null);
     }
-    public void Remove_Purple()
+    public async Task Remove_Purple()
     {
         Card_Purple.Value = new Card_Purple_One();
         Card_Purple.Value.Card_LoadData();
+        await UniTask.WaitUntil(() => Card_Purple.Value.cardUI != null);
     }
     #endregion
 

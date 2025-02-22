@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
-using UnityEngine.XR;
 
 /// <summary>
 /// カード変更シーンの設定。
@@ -23,7 +21,11 @@ public class GameMode_ExchangeMode : IGameMode
 
     private ChangeData Changes=null;
 
+    /// <summary>
+    /// 今
+    /// </summary>
     private ICard HandCards=null;
+
     private int HandCardSelect=0;
 
     private IDisposable CostEvent;
@@ -43,7 +45,7 @@ public class GameMode_ExchangeMode : IGameMode
         }
         else if(sessionManager.ExchangeMember.Count > 0)
         {
-            ExChange=sessionManager.ChangeScene.GetComponent<ExChangeComponent>();
+            ExChange=sessionManager.gameObject.GetComponent<ExChangeComponent>();
 
             int current = sessionManager.ExchangeMember.First.Value;
             sessionManager.ExchangeMember.RemoveFirst();
@@ -56,7 +58,7 @@ public class GameMode_ExchangeMode : IGameMode
             AllLoadUI();
 
             //現在プレイヤーの表示処理
-            sessionManager.ChangeScene.GetComponent<ExChangeComponent>().CurrentPlayerImage.sprite = sessionManager.card_Access["P" + Change_CurrentPlayer.PlayerId.ToString() + "の"].cardUI;
+            sessionManager.gameObject.GetComponent<ExChangeComponent>().CurrentPlayerImage.sprite = sessionManager.card_Access["P" + Change_CurrentPlayer.PlayerId.ToString() + "の"].cardUI;
             HandLoad();
 
 
@@ -64,36 +66,8 @@ public class GameMode_ExchangeMode : IGameMode
             HandCardDataOnClick();
             AllLoadCardDataOnClick();
 
-            CostEvent=Cost.Subscribe(_ =>
-            {
-            ExChangeComponent ex = sessionManager.ChangeScene.GetComponent<ExChangeComponent>();
-            switch (_)
-                {
-                    case 0:
-                        ex.Cost_One.gameObject.SetActive(false);
-                        ex.Cost_Two.gameObject.SetActive(false);
-                        ex.Cost_Three.gameObject.SetActive(false);
-                        break;
-                    case 1:
-                        ex.Cost_One.gameObject.SetActive(true);
-                        ex.Cost_Two.gameObject.SetActive(false);
-                        ex.Cost_Three.gameObject.SetActive(false);
-                        break; 
-                    case 2:
-                        ex.Cost_One.gameObject.SetActive(true);
-                        ex.Cost_Two.gameObject.SetActive(true);
-                        ex.Cost_Three.gameObject.SetActive(false);
-                        break; 
-                    case 3:
-                        ex.Cost_One.gameObject.SetActive(true);
-                        ex.Cost_Two.gameObject.SetActive(true);
-                        ex.Cost_Three.gameObject.SetActive(true);
-                        break;
-                }
-        });
+            CostUIExChange();
         }
-
-        
     }
     void IGameMode.Exit()
     {
@@ -107,27 +81,49 @@ public class GameMode_ExchangeMode : IGameMode
     }
 
     /// <summary>
+    /// コストイベント処理を発生させる関数
+    /// </summary>
+    void CostUIExChange()
+    {
+        //コスト関係の処理
+        CostEvent = Cost.Subscribe(_ =>
+        {
+            ExChangeComponent ex = sessionManager.gameObject.GetComponent<ExChangeComponent>();
+            switch (_)
+            {
+                case 0:
+                    ex.Cost_One.gameObject.SetActive(false);
+                    ex.Cost_Two.gameObject.SetActive(false);
+                    ex.Cost_Three.gameObject.SetActive(false);
+                    break;
+                case 1:
+                    ex.Cost_One.gameObject.SetActive(true);
+                    ex.Cost_Two.gameObject.SetActive(false);
+                    ex.Cost_Three.gameObject.SetActive(false);
+                    break;
+                case 2:
+                    ex.Cost_One.gameObject.SetActive(true);
+                    ex.Cost_Two.gameObject.SetActive(true);
+                    ex.Cost_Three.gameObject.SetActive(false);
+                    break;
+                case 3:
+                    ex.Cost_One.gameObject.SetActive(true);
+                    ex.Cost_Two.gameObject.SetActive(true);
+                    ex.Cost_Three.gameObject.SetActive(true);
+                    break;
+            }
+        });
+    }
+
+
+    /// <summary>
     ///　保持カードUI（手札以外）を全て変更
     /// </summary>
     void AllLoadUI()
     {
         foreach (var x in sessionManager.Session_Data)
         {
-            switch (x.Value.PlayerId)
-            {
-                case 1:
-                    LoadUI(ExChange.Player_One, x.Value);
-                    break;
-                case 2:
-                    LoadUI(ExChange.Player_Two, x.Value);
-                    break;
-                case 3:
-                    LoadUI(ExChange.Player_Three, x.Value);
-                    break;
-                case 4:
-                    LoadUI(ExChange.Player_Four, x.Value);
-                    break;
-            }
+            LoadUI(ExChange.Player_UI[x.Value.PlayerId],x.Value);
         }
     }
     /// <summary>
@@ -171,10 +167,10 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 1
+                    Select_CardNum = 1
                 };
             }
-            else if (Changes.data == sessionManager.Session_Data[num] && Changes.card_num == 1)
+            else if (Changes.data == sessionManager.Session_Data[num] && Changes.Select_CardNum == 1)
             {
                 Changes = null;
             }
@@ -183,7 +179,7 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 1
+                    Select_CardNum = 1
                 };
             }
         });
@@ -194,10 +190,10 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 2
+                    Select_CardNum = 2
                 };
             }
-            else if (Changes.data == sessionManager.Session_Data[num] && Changes.card_num == 2)
+            else if (Changes.data == sessionManager.Session_Data[num] && Changes.Select_CardNum == 2)
             {
                 Changes = null;
             }
@@ -206,7 +202,7 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 2
+                    Select_CardNum = 2
                 };
             }
         });
@@ -217,10 +213,10 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 3
+                    Select_CardNum = 3
                 };
             }
-            else if (Changes.data == sessionManager.Session_Data[num] && Changes.card_num == 3)
+            else if (Changes.data == sessionManager.Session_Data[num] && Changes.Select_CardNum == 3)
             {
                 Changes = null;
             }
@@ -229,7 +225,7 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 3
+                    Select_CardNum = 3
                 };
             }
         });
@@ -240,10 +236,10 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 4
+                    Select_CardNum = 4
                 };
             }
-            else if (Changes.data == sessionManager.Session_Data[num] && Changes.card_num == 4)
+            else if (Changes.data == sessionManager.Session_Data[num] && Changes.Select_CardNum == 4)
             {
                 Changes = null;
             }
@@ -252,7 +248,7 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 4
+                    Select_CardNum = 4
                 };
             }
         });
@@ -263,10 +259,10 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 5
+                    Select_CardNum = 5
                 };
             }
-            else if (Changes.data == sessionManager.Session_Data[num] && Changes.card_num == 5)
+            else if (Changes.data == sessionManager.Session_Data[num] && Changes.Select_CardNum == 5)
             {
                 Changes = null;
             }
@@ -275,7 +271,7 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 5
+                    Select_CardNum = 5
                 };
             }
         });
@@ -286,10 +282,10 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 6
+                    Select_CardNum = 6
                 };
             }
-            else if(Changes.data == sessionManager.Session_Data[num] && Changes.card_num == 6)
+            else if(Changes.data == sessionManager.Session_Data[num] && Changes.Select_CardNum == 6)
             {
                 Changes = null;  
             }
@@ -298,7 +294,7 @@ public class GameMode_ExchangeMode : IGameMode
                 Changes = new ChangeData
                 {
                     data = sessionManager.Session_Data[num],
-                    card_num = 6
+                    Select_CardNum = 6
                 };
             }
             
@@ -374,25 +370,13 @@ public class GameMode_ExchangeMode : IGameMode
 
         foreach (int i in list)
         {
-            switch (i)
-            {
-                case 1:
-                    LoadCardDataOnClick(ExChange.Player_One, i);
-                    break; 
-                case 2:
-                    LoadCardDataOnClick(ExChange.Player_Two, i);
-                    break; 
-                case 3:
-                    LoadCardDataOnClick(ExChange.Player_Three, i);
-                    break;
-                case 4:
-                    LoadCardDataOnClick(ExChange.Player_Four, i);
-                    break;
-            }
+            LoadCardDataOnClick(ExChange.Player_UI[i], i);
         }
     }
 
-
+    /// <summary>
+    /// 手札のUIを更新する。
+    /// </summary>
     void HandLoad()
     {
         sessionManager._HandCard_Component.card_one.image.sprite = null;
@@ -431,7 +415,7 @@ public class GameMode_ExchangeMode : IGameMode
     /// <summary>
     /// 外す場合。
     /// </summary>
-    void CardRemove()
+    private async void CardRemove()
     {
         //コスト処理
         if (Changes.data==Change_CurrentPlayer)
@@ -443,8 +427,7 @@ public class GameMode_ExchangeMode : IGameMode
             else
             {
                 return;
-            }
-            
+            }  
         }
         else
         {
@@ -458,29 +441,28 @@ public class GameMode_ExchangeMode : IGameMode
             }
         }
 
-        //実行処理
-        switch (Changes.card_num)
+        //番号次第でリムーブするカードを変える。
+        switch (Changes.Select_CardNum)
         {
             case 1:
-                Changes.data.Remove_Red_EffectPiece();
+                 await Changes.data.Remove_Red_EffectPiece();
                 break;
             case 2:
-                Changes.data.Remove_Blue();
+                await Changes.data.Remove_Blue();
                 break;
             case 3:
-                Changes.data.Remove_Red_EffectAward();
+                await Changes.data.Remove_Red_EffectAward();
                 break;
             case 4:
-                Changes.data.Remove_Yellow();
+                await Changes.data.Remove_Yellow();
                 break;
             case 5:
-                Changes.data.Remove_Green();
+                await Changes.data.Remove_Green();
                 break;
             case 6:
-                Changes.data.Remove_Purple();
+                await Changes.data.Remove_Purple();
                 break;
         }
-
         Changes = null;
 
         AllLoadUI();
@@ -490,7 +472,7 @@ public class GameMode_ExchangeMode : IGameMode
     /// </summary>
     void CardChange()
     {
-        switch (Changes.card_num)
+        switch (Changes.Select_CardNum)
         {
             case 1:
                 if (HandCards.card_pattern == Card_Pattern.Red)
