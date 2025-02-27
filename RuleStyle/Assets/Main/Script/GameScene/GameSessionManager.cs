@@ -71,8 +71,14 @@ public class GameSessionManager : MonoBehaviour
     [Header("カメラ")]
     public Transform CameraPosition;
 
+    /// <summary>
+    /// カードのデッキ
+    /// </summary>
     public List<ICard> cards =new List<ICard>();
 
+    /// <summary>
+    /// カードのデータを検索する為の物（cardsのデータをどちらかに限定した方が良いかもしれない。)
+    /// </summary>
     public Dictionary<string,ICard> card_Access = new Dictionary<string,ICard>();
 
     /// <summary>

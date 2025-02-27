@@ -118,12 +118,12 @@ public class GameMode_Init :IGameMode
                 break;
         }
 
-
+        //カードに今現在のUIデータをロードする
         foreach (var card in gameSessionManager.cards)
         {
-            //カードに今現在のUIデータを
             card.Card_LoadData();
         }
+        //カードの入れ場所にスプライト等をロードしたデータを入れておく。
         foreach(var card in gameSessionManager.cards)
         {
             gameSessionManager.card_Access.Add(card.CardName,card);

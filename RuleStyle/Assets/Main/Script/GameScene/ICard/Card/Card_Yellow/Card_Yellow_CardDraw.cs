@@ -18,11 +18,10 @@ public class Card_Yellow_CardDraw : ICard
     Sprite ICard.cardUI { get; set; }
     void ICard.CardNum()
     {
-        foreach(var data in PlayerData.EffectAwardPlayer_Id)
+        GameSessionManager manage = GameSessionManager.Instance();
+        foreach (var data in PlayerData.EffectAwardPlayer_Id)
         {
-            PlayerData
-                .gameSessionManager
-                .DeckDraw(PlayerData, PlayerData.RuleSuccessNum);
+            manage.DeckDraw(manage.Session_Data[data], PlayerData.RuleSuccessNum);
         }
     }
 }

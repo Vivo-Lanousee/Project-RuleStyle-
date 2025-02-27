@@ -148,7 +148,7 @@ public class PlayerSessionData:IDisposable
                 //ここやり方が不安なんだけど問題ないのだろうか
                 EffectPiecePlayer_Id = Red.EffectMember;
                 //-----------------------------------------------
-                
+
                 //Debug.Log("赤(適用対象)カード変更");
             }
             
@@ -168,10 +168,12 @@ public class PlayerSessionData:IDisposable
                     //-------------------------------------------
                     //IBlueCardに一度キャストして変換する。
                     ICard_Red red = (ICard_Red)_;
+                    
                     //ここやり方が不安なんだけど問題ないのだろうか
                     EffectAwardPlayer_Id = red.EffectMember;
                     //-----------------------------------------------
 
+                    
                     //Debug.Log("赤(報酬対象)カード変更");
                 }
             });
@@ -217,7 +219,7 @@ public class PlayerSessionData:IDisposable
 
     }
     /// <summary>
-    /// 自分の番のMainUISet(ルール変更はExChangeシーンでしか怒らない為
+    /// 自分の番のMainUISet(ルール変更はExChangeシーンでしかおこらない為
     /// メインシーンのターンプレイヤーが毎回一度呼ぶこととする
     /// </summary>
     public void UI_Set_Main()

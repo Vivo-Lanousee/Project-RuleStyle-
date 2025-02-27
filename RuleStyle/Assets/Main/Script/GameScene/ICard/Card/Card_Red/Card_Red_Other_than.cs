@@ -38,5 +38,6 @@ public class Card_Red_Other_than : ICard, ICard_Red
                 EffectMember.Add(i.Key);
             }
         }
+
     }
 }

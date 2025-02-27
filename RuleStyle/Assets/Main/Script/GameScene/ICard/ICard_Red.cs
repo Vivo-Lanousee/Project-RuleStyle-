@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 青カード時のみの実装になる。
+/// 赤カード時のみの実装になる。
 /// </summary>
 public interface ICard_Red
 {
