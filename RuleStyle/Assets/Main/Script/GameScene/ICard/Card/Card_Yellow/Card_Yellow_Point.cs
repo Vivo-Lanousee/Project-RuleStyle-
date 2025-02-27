@@ -15,19 +15,31 @@ public class Card_Yellow_Point : ICard
     string ICard.CardName => "得点";
     Sprite ICard.cardUI { get; set; }
     /// <summary>
-    /// PlayerData
+    /// 個人ルール成功時実行。得点を変更する
     /// </summary>
     void ICard.CardNum()
     {
         if (PlayerData!=null)
         {
+            GameSessionManager manage=GameSessionManager.Instance();
             if (PlayerData.RuleSuccessCalculation=="+")
             {
-                PlayerData.PlayerPoint += PlayerData.RuleSuccessNum;
+                //EffectAward報酬対象全てにプレイヤーの点数を変更する
+                foreach (var a in PlayerData.EffectAwardPlayer_Id)
+                {
+                    manage.Session_Data[a].PlayerPoint += PlayerData.RuleSuccessNum;
+                }
             }
-            else if(PlayerData.RuleSuccessCalculation=="-") {
-                PlayerData.PlayerPoint -= PlayerData.RuleSuccessNum;
-                if (PlayerData.PlayerPoint < 0) {  PlayerData.PlayerPoint = 0; }
+            else if(PlayerData.RuleSuccessCalculation=="-") 
+            {
+                foreach (var a in PlayerData.EffectAwardPlayer_Id)
+                {
+                    manage.Session_Data[a].PlayerPoint -= PlayerData.RuleSuccessNum;
+                    //0を下回った場合即座に0に変更する。
+                    if (manage.Session_Data[a].PlayerPoint < 0) { manage.Session_Data[a].PlayerPoint = 0; }
+                }
+
+                
             }
         }
     }

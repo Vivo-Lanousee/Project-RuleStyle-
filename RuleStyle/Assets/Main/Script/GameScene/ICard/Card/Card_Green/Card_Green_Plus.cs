@@ -13,9 +13,9 @@ public class Card_Green_Plus : ICard
     /// 基準カードの為Null
     /// </summary>
     public float? ProbabilityNum => null;
-    Card_Pattern ICard.card_pattern => Card_Pattern.Purple;
+    Card_Pattern ICard.card_pattern => Card_Pattern.Green;
 
-    string ICard.CardName => "＋";
+    string ICard.CardName => "+";
 
     Sprite ICard.cardUI { get; set; }
     /// <summary>
@@ -23,6 +23,7 @@ public class Card_Green_Plus : ICard
     /// </summary>
     void ICard.CardNum()
     {
+        Debug.Log("+カード");
         if (PlayerData != null)
         {
 

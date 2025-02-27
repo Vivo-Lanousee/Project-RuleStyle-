@@ -472,6 +472,7 @@ public class GameMode_ExchangeMode : IGameMode
     /// </summary>
     void CardChange()
     {
+        Debug.Log("第一条件");
         switch (Changes.Select_CardNum)
         {
             case 1:
@@ -520,6 +521,7 @@ public class GameMode_ExchangeMode : IGameMode
             case 6:
                 if (HandCards.card_pattern == Card_Pattern.Purple)
                 {
+                    Debug.Log("テストしています（パープル");
                     Changes.data.Card_Purple.Value = HandCards;
 
                     HandCards = null;
